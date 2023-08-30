@@ -48,7 +48,11 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(30),
                 )
               ),
-              onSubmitted: _controller.searchMovies,
+              onSubmitted: (value){
+                if (value.isNotEmpty){
+                  _controller.searchMovies(value);
+                }
+              },
               onChanged: (value) {
                 if (value.isEmpty){
                   _controller.getMovies();
@@ -73,7 +77,11 @@ class _HomePageState extends State<HomePage> {
                   leading: SizedBox(
                     height: 100.0,
                     width: 50.0,
-                    child: loadPosterImage(movies[index].posterPath), //Image.network('https://image.tmdb.org/t/p/original${movies[index].posterPath}'),
+                    child: loadPosterImage(movies[index].posterPath),
+                  ),
+                  onTap: () => Navigator.of(context).pushNamed(
+                    '/details',
+                    arguments: movies[index]
                   ),
                 );
               },
