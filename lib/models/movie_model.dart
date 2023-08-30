@@ -1,34 +1,34 @@
 class Movie {
-  late bool adult;
-  late String backdropPath;
-  late List<int> genreIds;
+  bool? adult;
+  String? backdropPath;
+  List<int>? genreIds;
   late int id;
-  late String originalLanguage;
-  late String originalTitle;
-  late String overview;
-  late double popularity;
-  late String posterPath;
-  late String releaseDate;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  String? releaseDate;
   late String title;
-  late bool video;
-  late double voteAverage;
-  late int voteCount;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
 
   Movie({
-    required this.adult,
-    required this.backdropPath,
-    required this.genreIds,
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
     required this.id,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.releaseDate,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
     required this.title,
-    required this.video,
-    required this.voteAverage,
-    required this.voteCount,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
   });
 
   Movie.fromJson(Map<String, dynamic> json) {

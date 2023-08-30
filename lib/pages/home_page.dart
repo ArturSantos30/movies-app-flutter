@@ -14,6 +14,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final MovieController _controller = MovieController(MoviesAPI());
+  final TextEditingController _textEditingController = TextEditingController();
+  
+  Widget loadPosterImage(String? posterPath){
+    if (posterPath != null){
+      return Image.network('https://image.tmdb.org/t/p/original$posterPath');
+    }
+    return Image.asset('assets/not_found.png',color: Colors.white,);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +37,7 @@ class _HomePageState extends State<HomePage> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: TextField(
+              controller: _textEditingController,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(16),
                 hintText: "Search for a movie",
@@ -39,6 +48,12 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(30),
                 )
               ),
+              onSubmitted: _controller.searchMovies,
+              onChanged: (value) {
+                if (value.isEmpty){
+                  _controller.getMovies();
+                }
+              } ,
             ),
           ),
         ),
@@ -49,15 +64,16 @@ class _HomePageState extends State<HomePage> {
         builder: (_, movies, __) {
           if (movies.isNotEmpty){
             return ListView.builder(
+              shrinkWrap: true,
               itemCount: movies.length,
               itemBuilder: (context, index){
                 return ListTile(
                   title: Text(movies[index].title),
                   subtitle: Text('Rate: ${movies[index].voteAverage}'),
                   leading: SizedBox(
-                    height: 300.0,
+                    height: 100.0,
                     width: 50.0,
-                    child: Image.network('https://image.tmdb.org/t/p/original${movies[index].posterPath}'),
+                    child: loadPosterImage(movies[index].posterPath), //Image.network('https://image.tmdb.org/t/p/original${movies[index].posterPath}'),
                   ),
                 );
               },
