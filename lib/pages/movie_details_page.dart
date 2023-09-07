@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:simplemovieapp/widgets/release_year_chip_custom_widget.dart';
 
 import '../models/movie_model.dart';
+import '../widgets/average_vote_custom_widget.dart';
+import '../widgets/backdrop_image_custom_widget.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   const MovieDetailsPage({super.key});
@@ -9,19 +12,6 @@ class MovieDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final movie = ModalRoute.of(context)!.settings.arguments as Movie;
-
-    Widget loadBackdropImage(String? backdropPath){
-      if (backdropPath != null){
-        return Image.network(
-          'https://image.tmdb.org/t/p/original$backdropPath',
-          fit: BoxFit.cover,
-          height: double.infinity,
-        );
-      }
-      return Center(
-          child: Image.asset('assets/not_found.png',color: Colors.white,)
-      );
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +23,7 @@ class MovieDetailsPage extends StatelessWidget {
         children: [
           SizedBox(
             height: 250,
-            child: loadBackdropImage(movie.backdropPath),
+            child: BackdropImageCustomWidget(backdropPath: movie.backdropPath),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
@@ -45,12 +35,14 @@ class MovieDetailsPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Text("Rate: ${movie.voteAverage} / 10"),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, bottom: 10),
-            child: Text("Year: ${DateTime.parse(movie.releaseDate.toString()).year}"),
+            padding: const EdgeInsets.only(left: 20, bottom: 10,right: 20),
+            child: Row(
+              children: [
+                AverageVoteCustomWidget(voteAverage: movie.voteAverage),
+                const Spacer(),
+                ReleaseYearChipCustomWidget(releaseDate: movie.releaseDate,)
+              ],
+            )
           ),
           const Padding(
             padding: EdgeInsets.only(left: 20),
