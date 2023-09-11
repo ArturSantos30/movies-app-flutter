@@ -18,47 +18,49 @@ class MovieDetailsPage extends StatelessWidget {
         title: const Text("Movie Details"),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 250,
-            child: BackdropImageCustomWidget(backdropPath: movie.backdropPath),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-            child: Text(movie.title,
-              style: const TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 250,
+              child: BackdropImageCustomWidget(backdropPath: movie.backdropPath),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Text(movie.title,
+                style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, bottom: 10,right: 20),
-            child: Row(
-              children: [
-                AverageVoteCustomWidget(voteAverage: movie.voteAverage),
-                const Spacer(),
-                ReleaseYearChipCustomWidget(releaseDate: movie.releaseDate,)
-              ],
-            )
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text(
-              "Storyline",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(left: 20, bottom: 10,right: 20),
+              child: Row(
+                children: [
+                  AverageVoteCustomWidget(voteAverage: movie.voteAverage),
+                  const Spacer(),
+                  ReleaseYearChipCustomWidget(releaseDate: movie.releaseDate,)
+                ],
+              )
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                "Storyline",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Text("${movie.overview}"),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Text("${movie.overview}"),
+            ),
+          ],
+        ),
       ),
     );
   }

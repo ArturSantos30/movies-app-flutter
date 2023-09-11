@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ReleaseYearChipCustomWidget extends StatelessWidget {
   final String? releaseDate;
+
   const ReleaseYearChipCustomWidget({super.key, this.releaseDate});
 
   @override

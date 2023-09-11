@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simplemovieapp/component/textfield_custom_component.dart';
-import 'package:simplemovieapp/services/movies_api.dart';
+import 'package:simplemovieapp/services/http_service.dart';
 
 import '../controllers/movie_controller.dart';
 import '../models/movie_model.dart';
@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final MovieController _controller = MovieController(MoviesAPI());
+  final MovieController _controller = MovieController(HttpService());
   final TextEditingController _textEditingController = TextEditingController();
 
   @override

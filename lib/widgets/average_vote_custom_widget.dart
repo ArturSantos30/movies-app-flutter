@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AverageVoteCustomWidget extends StatelessWidget {
-
   final double? voteAverage;
 
   const AverageVoteCustomWidget({super.key, this.voteAverage});
@@ -20,7 +19,7 @@ class AverageVoteCustomWidget extends StatelessWidget {
         ),
         const SizedBox(width: 8,),
         Text(
-          voteAverage.toString(),
+          voteAverage!.toStringAsFixed(2),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ],

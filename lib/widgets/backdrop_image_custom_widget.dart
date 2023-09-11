@@ -3,6 +3,7 @@ import 'package:simplemovieapp/utils/api_constants.dart';
 
 class BackdropImageCustomWidget extends StatelessWidget {
   final String? backdropPath;
+
   const BackdropImageCustomWidget({super.key, this.backdropPath});
 
   @override
@@ -12,6 +13,7 @@ class BackdropImageCustomWidget extends StatelessWidget {
         '${APIConstants.imagePath}$backdropPath',
         fit: BoxFit.cover,
         height: double.infinity,
+        width: double.infinity,
       );
     }
     return Center(
